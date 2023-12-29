@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load myfilters %}
+{% block title %}
+{% endblock title %}
+{% block body %}
+<div class="container">
+    <div class="row mt-5">
+
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5 col-sm-12">
+            <h5>Edit Your Post</h5>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3">Submit!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}
+
+
