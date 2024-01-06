@@ -12,12 +12,12 @@
 .main-area{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .register-form{
     width:100%;
     max-width: 500px;
-    margin:auto;
-    margin-top:40px;
+    margin: 70px 0px;
     padding:20px;
     background-color: #fff;
     border-top: 5px solid #0d6efd;
@@ -29,26 +29,32 @@
 .errorlist{
     color:red;
 }
-
 </style>
 {% endblock %}
 
 {% block body%}
-<form method="POST">{% csrf_token %}
 <div class="main-area">
-<div class="register-form">
-{{ form.non_field_errors }}
-      <h2 class="mainheading">LetsSociofi</h2>
-      <h4 class="mainheading">Login</h4>
-      <label for="id_username" class="login-labels">Email Address*</label>
-      {{ form.username.errors }}
-      {{ form.username|addclass:'form-control'|addplaceholder:'Email Address'}}
-      <label for="id_password" class="login-labels">Password*</label>
-      {{ form.password.errors }}
-      {{ form.password|addclass:'form-control'|addplaceholder:'Your Password' }}
-      <br>
-<button type="submit" class="btn btn-primary btn-lg signup-button">Login</button>
-</form>
-</div>
+    <div class="register-form">
+            <h2 class="mainheading">Lets Connect</h2>
+            <h4 class="mainheading">Login</h4>
+        <form method="POST">{% csrf_token %}
+
+            {{ form.non_field_errors }}
+
+            <label for="id_username" class="login-labels m-2">Email Address*</label>
+            {{ form.username.errors }}
+            {{ form.username|addclass:'form-control'|addplaceholder:'Email Address'}}
+
+            <label for="id_password" class="login-labels m-2">Password*</label>
+            {{ form.password.errors }}
+            {{ form.password|addclass:'form-control'|addplaceholder:'Your Password' }}
+
+            <br>
+            <a href="{% url 'reset_password' %}">forgot_password?</a></p>
+            <button type="submit" class="btn btn-primary btn-lg signup-butto">Login</button>
+        </form>
+
+        <p class="mt-2">Don't have an Account? <a href="{% url 'signup' %}">create_one</a></p>
+    </div>
 </div>
 {% endblock %}

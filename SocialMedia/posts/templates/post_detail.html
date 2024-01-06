@@ -71,6 +71,27 @@
             document.getElementById("post-comment").value = ""
         })
     }
+    let likeDislikeButton = document.getElementById("likeDislikeButton");
+
+    function likeDislikePost(){
+        fetch(
+            "{% url 'post-like-dislike' post.uuid %}", {
+                method: 'POST',
+                body: new FormData(document.getElementById('likeDislikeForm'))
+            }
+        ).then((response) => {
+            return response.json();
+        })
+        .then((response) => {
+            console.log(response)
+            if(response.payload.is_liked == true){
+                likeDislikeButton.innerHTML = `<button type="button" class="btn btn-outline-danger" onclick="likeDislikePost()"><i class="fa-solid fa-heart-crack"></i></button>`;
+            }
+            else{
+                likeDislikeButton.innerHTML = `<button type="button" class="btn btn-outline-primary" onclick="likeDislikePost()"><i class="fa-solid fa-heart"></i></button>`;
+            }
+            document.getElementById("likeCount").innerHTML = `${response.payload.like_count} Likes`
+        })
+    }
 </script>
 {% endblock %}
-</div>

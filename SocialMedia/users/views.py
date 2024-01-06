@@ -91,7 +91,6 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
         profile_user = Profile.objects.filter(user__username=self.kwargs.get(self.pk_url_kwarg))
         return profile_user
 
-
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)

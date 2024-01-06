@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load myfilters %}
-{% block title %}
-{% endblock title %}
-{% block body %}
+
+{% block body%}
     <h2>Edit Profile</h2>
     <form method="POST">
         {% csrf_token %}

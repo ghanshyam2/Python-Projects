@@ -43,10 +43,9 @@
               </form>
 
               {% elif user.username == profile.user.username %}
-              <form method="POST" action="{% url 'profile.user.username' % }">
+
               {% csrf_token %}
               <button type="submit" class="btn btn-light">Edit Profile</button>
-              </form>
               {% endif %}
 
             </div>
