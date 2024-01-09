@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load myfilter %}
+
+{% block title %}
+    Bloggy | New Blog Post
+{% endblock %}
+
+{% block css %}
+<style>
+    body{
+        background-color:#f5f5f5;
+
+    }
+    .main-area{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
+        padding: 20px;
+        height: 639px;
+    }
+    .signup-form{
+        width:100%;
+        max-width: 500px;
+        margin:auto;
+        margin-top:80px;
+        padding:20px;
+        background-color: #fff;
+        border-top: 5px solid #0d6efd;
+        border-radius: 5px;
+    }
+    .errorlist{
+        color:red;
+    }
+
+</style>
+{% endblock %}
+
+{% block body%}
+
+<div class="main-area">
+    <div class="signup-form my-2">
+        <h1 class="text-center">Bloggy</h1>
+        <h3 class="text-center">SignUp</h3>
+        <form method="post">{% csrf_token %}
+
+            {{form.non_field_errors}}
+
+            <label for="id_username" class="my-2">Username:</label>
+            {{ form.username.errors }}
+            {{ form.username|addclass:'form-control'|addplaceholder:'Your Username...'}}
+            <p>{{form.username.help_text}}</p>
+
+            <label for="id_password1" class="my-2">Your Password:</label>
+            {{ form.password.errors }}
+            {{ form.password1|addclass:'form-control'|addplaceholder:'Your Password...'}}
+
+            <label for="id_password2" class="my-2">Password Confirmation:</label>
+            {{ form.password2.errors }}
+            {{ form.password2|addclass:'form-control'|addplaceholder:'Confirm Your Password...'}}
+            <p>{{form.password2.help_text}}</p>
+
+            <button type="submit" class="btn btn-primary my-3">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

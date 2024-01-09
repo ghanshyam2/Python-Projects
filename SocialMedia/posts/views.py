@@ -40,7 +40,7 @@ class UploadPostView(LoginRequiredMixin, CreateView):
 class ListPosts(LoginRequiredMixin, ListView):
     paginate_by = 1
 
-    def get_queryset(self) -> QuerySet[Any]:
+    def get_queryset(self) -> QuerySet:
         posts = Post.objects.filter(user__username=self.kwargs["username"])
         return posts
 

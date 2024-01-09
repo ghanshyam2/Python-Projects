@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Blogs | Home
+{% endblock %}
+{% block css %}
+<style>
+    body{
+        background-color:#f5f5f5;
+
+    }
+    .main-area{
+        display: flex-col;
+        align-items: left;
+        padding: 20px;
+    }
+    .userfeed{
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body%}
+
+<div class="main-area">
+    <div class="container-fluid my-3">
+        {% if user.is_authenticated %}
+            <h3 class="text-center">Hey {{ user.username }}! Good to see you </h3>
+        {% else %}
+            <div class="d-flex justify-content-center align-item-center">
+                <span class="text-center">Hey Buddy, You are not Logged In.
+                    <a href="{% url 'login' %}">Log In</a> or <a href="{% url 'signup' %}">Sign Up</a>
+                </span>
+            </div>
+        {% endif %}
+    </div>
+    <h1 class="text-center">Latest Blogs</h1>
+    <div class="userfeed">
+        {% for blog in blog_list %}
+        <div class="card mb-3">
+            <h5 class="card-header"><i class="fa-solid fa-pen-nib"></i> {{blog.author.username}}</h5>
+            <img class="card-img-top" src="{{ blog.thumbnail.url }}" alt="{{blog.title}}">
+            <div class="card-body">
+                <h5>{{ blog.title }}</h5>
+                <p class="card-text">{{blog.description}}</p>
+            </div>
+            <a href="{{ blog.get_absolute_url }}" class="btn btn-primary">Read More</a>
+          </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
